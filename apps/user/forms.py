@@ -25,7 +25,7 @@ class UserForm(forms.ModelForm):
     def clean_email(self):
         email = self.cleaned_data.get('email')
 
-        if "@" and "." not in email:
+        if "@" not in email and "." not in email:
             raise forms.ValidationError(
                 'Invalid email, try again with correct email address'
             )
