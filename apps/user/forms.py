@@ -13,7 +13,7 @@ class UserForm(forms.ModelForm):
             'password'
         ]
     
-    def clean(self):
+    def clean_username(self):
         username = self.cleaned_data.get('username')
 
         if len(username) < 3:
@@ -22,7 +22,7 @@ class UserForm(forms.ModelForm):
             )
         return username
     
-    def clean(self):
+    def clean_email(self):
         email = self.cleaned_data.get('email')
 
         if "@" and "." not in email:
@@ -31,7 +31,7 @@ class UserForm(forms.ModelForm):
             )
         return email
     
-    def clean(self):
+    def clean_password(self):
         password = self.cleaned_data.get('password')
 
         if len(password) < 8:
