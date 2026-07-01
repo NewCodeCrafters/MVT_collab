@@ -7,7 +7,7 @@ CHOICE=(
     ("new","NEW"),
 )
 
-CHOICE=(
+TYPE_CHOICE=(
     ("mid range","MID_RANGE"),
     ("low range","LOW_RANGE"),
     ("high range","HIGH_RANGE")
@@ -20,7 +20,7 @@ class Phone(models.Model):
     description = models.TextField()
     status = models.CharField(max_length=100,choices=CHOICE, default='new')
     image = models.ImageField(upload_to='code images/')
-    range = models.CharField(max_length=200,choices=CHOICE, default='mid_range')
+    range = models.CharField(max_length=200,choices=TYPE_CHOICE, default='mid_range')
     create_at =models.DateTimeField(auto_now_add=True)
     uploaded_at = models.DateTimeField(auto_now=True)
 
