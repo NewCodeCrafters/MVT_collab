@@ -7,19 +7,19 @@ from apps.user.decorator import login_required, vendor_admin_required
 
 
 @login_required
-def p_list(request):
+def phone_list(request):
     phone = Phone.objects.order_by("-created_at")
-    return render(request, "Phone/b_list.html", {"phone": phone})
+    return render(request, "Phone_list.html", {"phone": phone})
 
 
 @login_required
 def details(request, slug):
     phone = get_object_or_404(Phone, slug=slug)
-    return render(request, "Phone/details.html", {"phone": phone})
+    return render(request, "details.html", {"phone": phone})
 
 
 @login_required
-def Get_phone(request):
+def post_phone(request):
     if request.method == "POST":
         form = PhoneForm(request.POST, request.FILES)
         if form.is_valid():
@@ -33,7 +33,7 @@ def Get_phone(request):
     else:
         form = PhoneForm()  
 
-    return render(request, "Phone/Get.html", {"form": form})
+    return render(request, "post_phone.html", {"form": form})
 
 
 @login_required
@@ -56,7 +56,7 @@ def edit_phone(request, slug):
     else:
         form = PhoneForm(instance=phone)  
 
-    return render(request, "Phone/edit.html", {"form": form, "phone": phone})
+    return render(request, "edit_phone.html", {"form": form, "phone": phone})
 
 
 @login_required
@@ -73,4 +73,4 @@ def delete_phone(request, slug):
         messages.success(request, "Phone deleted successfully.")
         return redirect("p_list")
 
-    return render(request, "Phone/delete_confirm.html", {"phone": phone})
+    return render(request, "delete_phone.html", {"phone": phone})
